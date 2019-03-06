@@ -7,15 +7,24 @@ class App extends Component {
       list: [
         'learn react',
         'learn vue'
-      ]
+      ],
+      inputValue: ''
     }
+    this.handleInputChange = this.handleInputChange.bind(this)
+  }
+
+  handleInputChange(e) {
+    this.setState({
+      inputValue: e.target.value
+    })
+    console.log(e.target.value)
   }
 
   render() {
     return (
       <div>
         <div>
-          <input/>
+          <input value={this.state.inputValue} onChange={this.handleInputChange}/>
           <button>add</button>
         </div>
         <ul>
