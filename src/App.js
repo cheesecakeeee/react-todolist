@@ -11,6 +11,7 @@ class App extends Component {
       inputValue: ''
     }
     this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleAddClick = this.handleAddClick.bind(this)
   }
 
   handleInputChange(e) {
@@ -20,12 +21,19 @@ class App extends Component {
     console.log(e.target.value)
   }
 
+  handleAddClick() {
+    this.setState({
+      list: [...this.state.list, this.state.inputValue],
+      inputValue: ''
+    })
+  }
+
   render() {
     return (
       <div>
         <div>
           <input value={this.state.inputValue} onChange={this.handleInputChange}/>
-          <button>add</button>
+          <button onClick={this.handleAddClick}>add</button>
         </div>
         <ul>
           {
