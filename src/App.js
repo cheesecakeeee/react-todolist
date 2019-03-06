@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import TodoItem from './TodoItem'
 
 class App extends Component {
   constructor (props) {
@@ -47,7 +48,10 @@ class App extends Component {
           {
             this.state.list.map((item, index) => {
               return (
-                <li key={index} onClick={this.handleItemClick.bind(this, index)}>{item}</li>
+                <TodoItem
+                  key={index}
+                  content={item}
+                />
               )
             })
           }
