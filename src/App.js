@@ -13,6 +13,7 @@ class App extends Component {
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleAddClick = this.handleAddClick.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   handleInputChange(e) {
@@ -29,12 +30,10 @@ class App extends Component {
     })
   }
 
-  handleItemClick(i) {
+  handleDelete(i) {
     const list = [...this.state.list]
     list.splice(i, 1)
-    this.setState({
-      list
-    })
+    this.setState({list})
   }
 
   render() {
@@ -51,6 +50,8 @@ class App extends Component {
                 <TodoItem
                   key={index}
                   content={item}
+                  index={index}
+                  deleteItem={this.handleDelete}
                 />
               )
             })
