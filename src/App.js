@@ -28,6 +28,14 @@ class App extends Component {
     })
   }
 
+  handleItemClick(i) {
+    const list = [...this.state.list]
+    list.splice(i, 1)
+    this.setState({
+      list
+    })
+  }
+
   render() {
     return (
       <div>
@@ -39,7 +47,7 @@ class App extends Component {
           {
             this.state.list.map((item, index) => {
               return (
-                <li key={index}>{item}</li>
+                <li key={index} onClick={this.handleItemClick.bind(this, index)}>{item}</li>
               )
             })
           }
