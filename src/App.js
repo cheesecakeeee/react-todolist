@@ -17,25 +17,41 @@ class App extends Component {
   }
 
   handleInputChange(e) {
-    this.setState({
-      inputValue: e.target.value
-    })
-    console.log(e.target.value)
+    const value = e.target.value
+    this.setState(() => ({
+      inputValue: value
+    }))
   }
 
   handleAddClick() {
-    this.setState({
-      list: [...this.state.list, this.state.inputValue],
+    this.setState((prevState) => ({
+      list: [...prevState.list, prevState.inputValue],
       inputValue: ''
-    })
+    }))
   }
 
   handleDelete(i) {
-    const list = [...this.state.list]
-    list.splice(i, 1)
-    this.setState({list})
+    this.setState((prevState) => {
+      const list = [...prevState.list]
+      list.splice(i, 1)
+      return {list}
+    })
   }
 
+  getTodoItem() {
+    return (
+      this.state.list.map((item, index) => {
+        return (
+          <TodoItem
+            key={index}
+            content={item}
+            index={index}
+            deleteItem={this.handleDelete}
+          />
+        )
+      })
+    )
+  }
   render() {
     return (
       <div>
@@ -44,18 +60,7 @@ class App extends Component {
           <button onClick={this.handleAddClick}>add</button>
         </div>
         <ul>
-          {
-            this.state.list.map((item, index) => {
-              return (
-                <TodoItem
-                  key={index}
-                  content={item}
-                  index={index}
-                  deleteItem={this.handleDelete}
-                />
-              )
-            })
-          }
+          { this.getTodoItem() }
         </ul>
       </div>
     );
