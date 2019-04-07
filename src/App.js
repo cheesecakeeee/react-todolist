@@ -5,10 +5,7 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      list: [
-        'learn react',
-        'learn vue'
-      ],
+      list: [],
       inputValue: ''
     }
     this.handleInputChange = this.handleInputChange.bind(this)
